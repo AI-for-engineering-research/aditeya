@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Designing aircraft for contrail impacts — About by Aditeya Shukla." />
-  <title>Designing aircraft for contrail impacts · About</title>
+  <meta name="description" content="Aircraft Design for Contrail Avoidance — project by Aditeya Shukla." />
+  <title>Aircraft Design for Contrail Avoidance · About</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>html{background:#06080d}body{background:#06080d}</style>
   <link rel="stylesheet" href="../../styles.css" />
 </head>
-<body class="project-page">
+<body class="project-page contrail-project">
   <header class="site-header">
     <a class="brand" href="../../index.html" aria-label="Aditeya Shukla home">AS</a>
     <nav class="nav" aria-label="Primary navigation">
@@ -19,23 +19,76 @@
       <a href="../../index.html#projects">Projects</a>
       <a href="../../index.html#contact">Contact</a>
     </nav>
+    <div class="scroll-progress" aria-hidden="true"><span class="scroll-plane">✈</span></div>
   </header>
 
-  <main class="section-pad">
-    <a class="breadcrumb" href="../../index.html#projects">← Back to project</a>
-    <section class="page-hero reveal">
-      <p class="eyebrow">Contrails · aircraft design · optimization</p>
-      <h1>Designing aircraft for contrail impacts</h1>
-      <div class="page-tabs">
-        <a class="active" href="about.html">About</a>
-        <a class="" href="updates.html">Updates</a>
-        <a class="" href="reflections.html">Reflections</a>
+  <main class="section-pad project-detail-main">
+    <a class="breadcrumb" href="../../index.html#projects">← Back to projects</a>
+
+    <section class="project-detail-hero reveal">
+      <div class="project-hero-copy">
+        <p class="eyebrow">Contrails · aircraft design · optimization</p>
+        <h1>Aircraft Design for Contrail Avoidance</h1>
+        <p class="lede">Designing aircraft that can reduce climate-warming contrails with minimal fuel penalty.</p>
+        <div class="page-tabs">
+          <a class="active" href="about.html">About</a>
+          <a href="updates.html">Updates</a>
+          <a href="reflections.html">Reflections</a>
+        </div>
+      </div>
+      <div class="hero-figure-stack" aria-label="Project figures">
+        <article class="hero-figure-card">
+          <img src="../../assets/exampleFig.png" alt="Example aircraft deviation showing reference altitude, vertical deviation height, and horizontal deviation length" />
+          <div><strong>Deviation geometry</strong><span>h<sub>ref</sub>, dH, and dL define the avoidance maneuver.</span></div>
+        </article>
+        <article class="hero-figure-card offset">
+          <img src="../../assets/matrix350.png" alt="Example contrail cost matrix over altitude and deviation capability" />
+          <div><strong>Contrail cost matrix</strong><span>Design capability mapped to expected contrail exposure.</span></div>
+        </article>
       </div>
     </section>
 
-    <section class="content-card reveal delay-1">
-      <p class="section-label">About</p>
-      <div class="empty-state">Content forthcoming. This page is reserved for concise project notes as the work develops.</div>
+    <section class="content-card project-summary reveal delay-1">
+      <p>I built a framework that brings contrail avoidance into the aircraft design loop. By combining global weather data, representative flight schedules, and gradient-based aircraft optimization, the project quantifies how aircraft can be designed to avoid persistent contrails while minimizing fuel burn penalties.</p>
+    </section>
+
+    <section class="project-flow reveal" aria-label="Project workflow diagram">
+      <div>Weather data</div>
+      <span>→</span>
+      <div>ISSR detection</div>
+      <span>→</span>
+      <div>Contrail cost surface</div>
+      <span>→</span>
+      <div>Aircraft optimization</div>
+      <span>→</span>
+      <div>Fuel/climate tradeoff</div>
+    </section>
+
+    <section class="project-two-col">
+      <article class="content-card reveal">
+        <p class="section-label">What I’ve built so far</p>
+        <ul class="polished-list">
+          <li>ISSR detection pipeline from ERA5 reanalysis data.</li>
+          <li>Simulated ISSR and contrail-forming region intersections for 80,000+ representative flights.</li>
+          <li>Contrail cost matrix over cruise altitude and deviation capability.</li>
+          <li>Contrail cost surface <strong>C<sub>contrail</sub>(h<sub>ref</sub>, dL, dH)</strong> mapping cruise altitude, horizontal deviation length, and vertical deviation height to expected contrail formation.</li>
+          <li>Multimission optimization problem for fuel burn and contrail tradeoffs.</li>
+          <li>Design sweep showing aircraft-level robustness to avoidance maneuvers.</li>
+        </ul>
+      </article>
+
+      <article class="content-card reveal delay-1">
+        <p class="section-label">Why it matters</p>
+        <p>Contrail mitigation is usually framed as a flight-routing problem. This project shows that aircraft design itself can expand the feasible trade space, making future aircraft more capable of climate-aware operations.</p>
+      </article>
+    </section>
+
+    <section class="content-card reveal">
+      <p class="section-label">What’s left to be done</p>
+      <ul class="polished-list compact-list">
+        <li>Use the contrail penalty function in TASOPT and perform multimission optimization.</li>
+        <li>Use the Aviation Emissions Inventory Code (AEIC) for fleet-wide analysis to understand the impacts of designing for contrail avoidance capability.</li>
+      </ul>
     </section>
   </main>
 

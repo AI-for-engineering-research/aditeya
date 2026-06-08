@@ -139,6 +139,34 @@ document.querySelectorAll('.copy-email').forEach((button) => {
   });
 });
 
+document.querySelectorAll('[data-modal-open]').forEach((button) => {
+  button.addEventListener('click', () => {
+    const modal = document.getElementById(button.dataset.modalOpen);
+    if (!modal) return;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-is-open');
+    modal.querySelector('.modal-panel')?.focus();
+  });
+});
+
+function closeModal(modal) {
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('modal-is-open');
+}
+
+document.querySelectorAll('.modal').forEach((modal) => {
+  modal.addEventListener('click', (event) => {
+    if (event.target.closest('[data-modal-close]')) closeModal(modal);
+  });
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key !== 'Escape') return;
+  document.querySelectorAll('.modal.open').forEach(closeModal);
+});
+
 document.addEventListener('click', (event) => {
   const link = event.target.closest('a');
   if (!link) return;
