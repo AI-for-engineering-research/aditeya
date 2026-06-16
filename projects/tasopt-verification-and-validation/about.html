@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="TASOPT Verification and Validation — project by Aditeya Shukla." />
+  <title>TASOPT Verification and Validation · About</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>html{background:#06080d}body{background:#06080d}</style>
+  <link rel="stylesheet" href="../../styles.css" />
+</head>
+<body class="project-page tasopt-project">
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Aditeya Shukla home">AS</a>
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="../../index.html#about">About</a>
+      <a href="../../index.html#projects">Projects</a>
+      <a href="../../index.html#contact">Contact</a>
+    </nav>
+    <div class="scroll-progress" aria-hidden="true"><span class="scroll-plane">✈</span></div>
+  </header>
+
+  <main class="section-pad project-detail-main">
+    <a class="breadcrumb" href="../../index.html#projects">← Back to projects</a>
+
+    <section class="project-detail-hero reveal">
+      <div class="project-hero-copy">
+        <p class="eyebrow">TASOPT · aircraft design · V&amp;V</p>
+        <h1>TASOPT Verification and Validation</h1>
+        <p class="lede">Validating TASOPT against real aircraft geometry and performance, starting with the Boeing 737-800 and extending to regional and wide-body aircraft.</p>
+        <div class="page-tabs">
+          <a class="active" href="about.html">About</a>
+          <a href="updates.html">Updates</a>
+          <a href="reflections.html">Reflections</a>
+        </div>
+      </div>
+      <div class="hero-figure-stack" aria-label="Project validation targets">
+        <article class="hero-figure-card">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUQEXzzN6Qdk4l8xrDqAMoaV2NXqscVv0EExSCmcxrrXXlPZqLq18uF2g&s=10" alt="Boeing 737-800 geometry from airport planning documentation" />
+          <div><strong>B738 geometry baseline</strong><span>Match TASOPT inputs against real Boeing 737-800 dimensions from airport planning documentation.</span></div>
+        </article>
+        <article class="hero-figure-card offset">
+          <img src="https://i.sstatic.net/cecmx.png" alt="Payload-range diagram for aircraft performance validation" />
+          <div><strong>Payload-range validation</strong><span>Use the payload-range diagram to check whether the TASOPT model reproduces real aircraft performance.</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-card project-summary reveal delay-1">
+      <p>This project uses TASOPT, a medium-fidelity aircraft design and optimization tool, and tests whether it can reproduce real aircraft behavior. The first target is the Boeing 737-800: matching not just published geometry, but also payload-range behavior through a multi-mission approach.</p>
+    </section>
+
+    <section class="project-flow reveal" aria-label="Project workflow diagram">
+      <div>Real B738 data</div>
+      <span>→</span>
+      <div>TASOPT model</div>
+      <span>→</span>
+      <div>Geometry V&amp;V</div>
+      <span>→</span>
+      <div>Multi-mission performance</div>
+      <span>→</span>
+      <div>Reusable V&amp;V pipeline</div>
+    </section>
+
+    <section class="project-two-col">
+      <article class="content-card reveal">
+        <p class="section-label">What I’m building</p>
+        <ul class="polished-list">
+          <li>A Boeing 737-800 reference model in TASOPT.</li>
+          <li>Geometry validation against real aircraft dimensions and published data.</li>
+          <li>Performance validation against a real payload-range diagram.</li>
+          <li>A multi-mission validation approach rather than relying on a single design point.</li>
+          <li>A repeatable V&amp;V workflow for additional aircraft classes.</li>
+        </ul>
+      </article>
+
+      <article class="content-card reveal delay-1">
+        <p class="section-label">Why it matters</p>
+        <p>Before TASOPT can be used confidently for future aircraft concepts or environmental optimization, it needs to reproduce current aircraft with known geometry and performance. A rigorous V&amp;V process helps separate modeling assumptions from real aircraft behavior.</p>
+      </article>
+    </section>
+
+    <section class="content-card reveal">
+      <p class="section-label">Next validation targets</p>
+      <ul class="polished-list compact-list">
+        <li><strong>Regional aircraft:</strong> Embraer E195.</li>
+        <li><strong>Wide-body aircraft:</strong> Boeing 777-300ER.</li>
+        <li>Turn the B738 process into a reusable pipeline for aircraft-level V&amp;V across size classes.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Aditeya Shukla</p>
+    <a href="../../index.html">Home</a>
+  </footer>
+  <script src="../../script.js" defer></script>
+</body>
+</html>

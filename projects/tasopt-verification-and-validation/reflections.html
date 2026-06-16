@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="TASOPT Verification and Validation — Reflections by Aditeya Shukla." />
+  <title>TASOPT Verification and Validation · Reflections</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>html{background:#06080d}body{background:#06080d}</style>
+  <link rel="stylesheet" href="../../styles.css" />
+</head>
+<body class="project-page">
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Aditeya Shukla home">AS</a>
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="../../index.html#about">About</a>
+      <a href="../../index.html#projects">Projects</a>
+      <a href="../../index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="section-pad">
+    <a class="breadcrumb" href="../../index.html#projects">← Back to project</a>
+    <section class="page-hero reveal">
+      <p class="eyebrow">TASOPT · aircraft design · V&amp;V</p>
+      <h1>TASOPT Verification and Validation</h1>
+      <div class="page-tabs">
+        <a href="about.html">About</a>
+        <a href="updates.html">Updates</a>
+        <a class="active" href="reflections.html">Reflections</a>
+      </div>
+    </section>
+
+    <section class="content-card reveal delay-1">
+      <p class="section-label">Reflections</p>
+      <button class="reflection-post" type="button" data-modal-open="tasopt-portfolio-reflection">
+        <span>8 June 2026</span>
+        <strong>Made TASOPT V&amp;V the current project</strong>
+        <em>Read more →</em>
+      </button>
+      <button class="reflection-post" type="button" data-modal-open="skills-reflection">
+        <span>12 June 2026</span>
+        <strong>Added Skills</strong>
+        <em>Read more →</em>
+      </button>
+      <button class="reflection-post" type="button" data-modal-open="portfolio-reflection">
+        <span>7 June 2026</span>
+        <strong>Made portfolio website</strong>
+        <em>Read more →</em>
+      </button>
+    </section>
+
+    <div class="modal" id="tasopt-portfolio-reflection" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="tasopt-portfolio-reflection-title">
+      <div class="modal-backdrop" data-modal-close></div>
+      <article class="modal-panel" tabindex="-1">
+        <button class="modal-close" type="button" data-modal-close aria-label="Close reflection">×</button>
+        <p class="section-label">Reflection</p>
+        <h2 id="tasopt-portfolio-reflection-title">Made TASOPT V&amp;V the current project</h2>
+
+        <section class="reflection-section">
+          <h3>Pointers (from human)</h3>
+          <p>Changed my project to TASOPT V&amp;V, I think I will do some fine tuning on the about page once I think about my own project and scope a bit more. I also installed Playwright to have a better time doing web development with AI.</p>
+        </section>
+
+        <section class="reflection-section">
+          <h3>Summary of the build (from AI)</h3>
+          <p>We used Playwright to inspect the portfolio before editing, then added a new project called <em>TASOPT Verification and Validation</em>. The homepage current-project card now points to this project, and the old contrail project remains available as a previous project.</p>
+          <p>The new project page describes a validation workflow for TASOPT: real B738 data, a TASOPT model, geometry V&amp;V, multi-mission performance validation against a payload-range diagram, and a reusable V&amp;V pipeline for the E195 and B777-300ER.</p>
+          <p>We also moved the existing portfolio reflection into this project and fixed the workflow/timeline layout when it overflowed its container.</p>
+          <p><a class="button" href="portfolio-tasopt-update-transcript.html">Read the conversation transcript</a></p>
+        </section>
+      </article>
+    </div>
+
+    <div class="modal" id="skills-reflection" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="skills-reflection-title">
+      <div class="modal-backdrop" data-modal-close></div>
+      <article class="modal-panel" tabindex="-1">
+        <button class="modal-close" type="button" data-modal-close aria-label="Close reflection">×</button>
+        <p class="section-label">Reflection</p>
+        <h2 id="skills-reflection-title">Added Skills</h2>
+
+        <section class="reflection-section">
+          <h3>Pointers (from human)</h3>
+          <ul class="polished-list compact-list">
+            <li>I added grill-me and improve codebase arch.</li>
+            <li>I didn't use AI to add these skills, just opened the skills directory on VS Code and added them, which was easier.</li>
+            <li>I am yet to use them on my work.</li>
+          </ul>
+        </section>
+
+        <section class="reflection-section">
+          <h3>Summary of the build (from AI)</h3>
+          <p>This update added custom pi skills to support future project work. The first skill, grill-me, is intended to pressure-test plans through focused questioning and documentation updates. The second, improve codebase arch, is aimed at helping reason about and improve codebase architecture.</p>
+          <p>Unlike the portfolio build itself, this was easier to do manually: opening the skills directory in VS Code and adding the files directly felt faster than routing the whole task through AI. The next useful step is to actually apply these skills during real TASOPT verification and validation work and see whether they improve the planning and implementation process.</p>
+        </section>
+      </article>
+    </div>
+
+    <div class="modal" id="portfolio-reflection" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="portfolio-reflection-title">
+      <div class="modal-backdrop" data-modal-close></div>
+      <article class="modal-panel" tabindex="-1">
+        <button class="modal-close" type="button" data-modal-close aria-label="Close reflection">×</button>
+        <p class="section-label">Reflection</p>
+        <h2 id="portfolio-reflection-title">Made portfolio website</h2>
+
+        <section class="reflection-section">
+          <h3>Pointers (from human)</h3>
+          <ul class="polished-list compact-list">
+            <li>As someone who has had experience in web development this was actually much harder than I thought.</li>
+            <li>I kept feeling like I could do it faster and better than the AI.</li>
+            <li>I guess this is what Prashanth and Ian feel when they tell me to do something.</li>
+          </ul>
+        </section>
+
+        <section class="reflection-section">
+          <h3>Summary of the build (from AI)</h3>
+          <p>This chat was a full iterative design session for my portfolio website. I asked for a clean, fast, dark-themed portfolio for Aditeya Shukla with smooth animations, an about section, a projects section, and project pages for about, updates, and reflections.</p>
+          <p>We refined the homepage repeatedly: reducing the text, making the tone more professional, adding my headshot, simplifying the hero, creating a playful three-line status caption, adding hover emoji bursts for Arsenal and Porchfest, and removing experiments that did not work well, like the custom airplane cursor.</p>
+          <p>We also rebuilt the About section into a concise bio plus a horizontally scrollable timeline, removed unnecessary sections, fixed navigation labels, updated the contact email behavior, and created a detailed project page for the current project section.</p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Aditeya Shukla</p>
+    <a href="../../index.html">Home</a>
+  </footer>
+  <script src="../../script.js" defer></script>
+</body>
+</html>
