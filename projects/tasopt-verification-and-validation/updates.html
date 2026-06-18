@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="TASOPT Verification and Validation — Updates by Aditeya Shukla." />
+  <meta name="description" content="TASOPT Verification and Validation — updates and reflections by Aditeya Shukla." />
   <title>TASOPT Verification and Validation · Updates</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,7 @@
   <style>html{background:#06080d}body{background:#06080d}</style>
   <link rel="stylesheet" href="../../styles.css" />
 </head>
-<body class="project-page">
+<body class="project-page updates-page">
   <header class="site-header">
     <a class="brand" href="../../index.html" aria-label="Aditeya Shukla home">AS</a>
     <nav class="nav" aria-label="Primary navigation">
@@ -19,24 +19,666 @@
       <a href="../../index.html#projects">Projects</a>
       <a href="../../index.html#contact">Contact</a>
     </nav>
+    <div class="scroll-progress" aria-hidden="true"><span class="scroll-plane">✈</span></div>
   </header>
 
-  <main class="section-pad">
-    <a class="breadcrumb" href="../../index.html#projects">← Back to project</a>
+  <main class="section-pad update-main">
+    <a class="breadcrumb" href="about.html">← Back to project</a>
     <section class="page-hero reveal">
-      <p class="eyebrow">TASOPT · aircraft design · V&amp;V</p>
+      <p class="eyebrow">TASOPT · updates &amp; reflections</p>
       <h1>TASOPT Verification and Validation</h1>
       <div class="page-tabs">
         <a href="about.html">About</a>
         <a class="active" href="updates.html">Updates</a>
-        <a href="reflections.html">Reflections</a>
       </div>
     </section>
 
-    <section class="content-card reveal delay-1">
-      <p class="section-label">Updates</p>
-      <div class="empty-state">Content forthcoming. This page is reserved for concise notes as the B738 validation and follow-on E195/B777-300ER pipeline develop.</div>
+    <section class="update-layout">
+      <aside class="update-index reveal">
+        <p class="section-label">Project log</p>
+        <a href="#update-001">001 · Outline and grill-me</a>
+        <a href="#earlier-notes">Earlier notes</a>
+      </aside>
+
+      <div class="update-stream">
+        <article class="update-paper reveal delay-1" id="update-001">
+          <header>
+            <span>Update 001</span>
+            <h2>Updating the project outline using grill-me</h2>
+            <p>18 June 2026</p>
+          </header>
+
+          <p>I wrote an <button class="inline-file-button" type="button" data-modal-open="outline-file">OUTLINE.md</button> for my project specifically detailing exactly what the aim, steps, and targets are for the project. I also added specific instructions to slow the project development to a step-by-step basis since I think these models want to complete everything you ask right away. I want to add tests, validation, and documentation after each small step.</p>
+
+          <p>I used grill-me and asked the agent to read and analyse TASOPT to get context, and then go through my outline. What it came up with was quite interesting and useful. The overall analysis was useful because the agent was able to predict future problems, such as the need to classify each TASOPT input by whether it should be fixed from data or calibrated. It was also still jumping the gun on some things, like the optimization problem setup.</p>
+
+          <p>I answered its questions, updated the outline, and then ran the same thing with grill-me once more to further fine tune the project outline. I also asked it to make an <button class="inline-file-button" type="button" data-modal-open="outline-agent-file">OUTLINE-WITH-AGENT.md</button> to see exactly what it thinks of the project, edit it, and avoid missing details I had not added.</p>
+
+          <p>I updated the website project page using the outline. At first the website was laid out like a tech product, but I asked it to make it more like an academic paper/project.</p>
+
+          <p>My next task is to carefully read the website and OUTLINE-WITH-AGENT.md file, and then correct any miscommunication with the agent.</p>
+
+          <div class="update-links">
+            <span class="attachment-label">Attached files</span>
+            <button class="button" type="button" data-modal-open="outline-file">Read OUTLINE.md</button>
+            <button class="button ghost" type="button" data-modal-open="outline-agent-file">Read OUTLINE-WITH-AGENT.md</button>
+            <button class="button ghost" type="button" data-modal-open="transcript-file">Read transcript</button>
+          </div>
+        </article>
+
+        <section class="content-card reveal" id="earlier-notes">
+          <p class="section-label">Earlier notes</p>
+          <button class="reflection-post" type="button" data-modal-open="tasopt-portfolio-reflection">
+            <span>8 June 2026</span>
+            <strong>Made TASOPT V&amp;V the current project</strong>
+            <em>Read more →</em>
+          </button>
+          <button class="reflection-post" type="button" data-modal-open="skills-reflection">
+            <span>12 June 2026</span>
+            <strong>Added Skills</strong>
+            <em>Read more →</em>
+          </button>
+          <button class="reflection-post" type="button" data-modal-open="portfolio-reflection">
+            <span>7 June 2026</span>
+            <strong>Made portfolio website</strong>
+            <em>Read more →</em>
+          </button>
+        </section>
+      </div>
     </section>
+
+    <div class="modal" id="tasopt-portfolio-reflection" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="tasopt-portfolio-reflection-title">
+      <div class="modal-backdrop" data-modal-close></div>
+      <article class="modal-panel" tabindex="-1">
+        <button class="modal-close" type="button" data-modal-close aria-label="Close reflection">×</button>
+        <p class="section-label">Earlier note</p>
+        <h2 id="tasopt-portfolio-reflection-title">Made TASOPT V&amp;V the current project</h2>
+        <section class="reflection-section">
+          <h3>Pointers</h3>
+          <p>Changed my project to TASOPT V&amp;V. I planned to fine tune the about page once I thought about my own project and scope a bit more. I also installed Playwright to have a better time doing web development with AI.</p>
+        </section>
+        <section class="reflection-section">
+          <h3>Summary</h3>
+          <p>We added TASOPT Verification and Validation as the current project, pointed the homepage to it, and kept the contrail project as a previous project.</p>
+          <p><a class="button" href="portfolio-tasopt-update-transcript.html">Read the conversation transcript</a></p>
+        </section>
+      </article>
+    </div>
+
+    <div class="modal" id="skills-reflection" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="skills-reflection-title">
+      <div class="modal-backdrop" data-modal-close></div>
+      <article class="modal-panel" tabindex="-1">
+        <button class="modal-close" type="button" data-modal-close aria-label="Close reflection">×</button>
+        <p class="section-label">Earlier note</p>
+        <h2 id="skills-reflection-title">Added Skills</h2>
+        <section class="reflection-section">
+          <ul class="polished-list compact-list">
+            <li>I added grill-me and improve codebase arch.</li>
+            <li>I didn't use AI to add these skills, just opened the skills directory on VS Code and added them, which was easier.</li>
+            <li>I am yet to use them on my work.</li>
+          </ul>
+        </section>
+      </article>
+    </div>
+
+    <div class="modal" id="portfolio-reflection" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="portfolio-reflection-title">
+      <div class="modal-backdrop" data-modal-close></div>
+      <article class="modal-panel" tabindex="-1">
+        <button class="modal-close" type="button" data-modal-close aria-label="Close reflection">×</button>
+        <p class="section-label">Earlier note</p>
+        <h2 id="portfolio-reflection-title">Made portfolio website</h2>
+        <section class="reflection-section">
+          <ul class="polished-list compact-list">
+            <li>As someone who has had experience in web development this was actually much harder than I thought.</li>
+            <li>I kept feeling like I could do it faster and better than the AI.</li>
+            <li>I guess this is what Prashanth and Ian feel when they tell me to do something.</li>
+          </ul>
+        </section>
+      </article>
+    </div>
+
+    <div class="modal file-modal" id="outline-file" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="outline-file-title">
+      <div class="modal-backdrop" data-modal-close></div>
+      <article class="modal-panel file-modal-panel" tabindex="-1">
+        <button class="modal-close" type="button" data-modal-close aria-label="Close file">×</button>
+        <p class="section-label">Attached file</p>
+        <h2 id="outline-file-title">OUTLINE.md</h2>
+        <pre class="attached-file"><code># TASOPT V&amp;V against real aircraft
+
+This project seeks generate an automated pipeline to compare and validate TASOPT against real aircraft.
+
+Using available data such as airport planning documents and emissions databank, the framework shall design and size and aircraft given its geometry, mission parameters (range and payload), and engine parameters. The validation will be against not only the weights (empty weight, WMTO, fuel weight), but more importantly match the aircraft mission requirements and performance. The main validation will be against the payload range diagrams and the emission databank points for the engine.
+
+The goal should be to assimilate and verify all inputs for TASOPT that can be validated against real publically available data. No information should be made up to fit the validation. A perfect representation is not the goal. It is ok to be off by a couple percent, as long as the mission requirements are captured
+
+The steps to design, size and validate the aircraft should be
+
+1. **Get all relevant input and validation data**: Get airport planning documents, engine emissions databank, etc. and extract data from it. Relevent data includes geometry inputs, weights, payload range diagram. Determine what the design/sizing mission payload and range is. Additionally determine what the off design mission payload and ranges are going to be using the payload range diagram.
+2. **Update input toml file**: After getting the data go through the baseline toml input file for TASOPT and update the inputs. Throughout the framework, the only changes in the code should be in the TOML input files, no changes in the TASOPT code itself. UNLESS a bug/error in the code is found and then we can fix it.
+
+ - no TASOPT source edits without permission,
+ - no hidden runtime mutations unless documented
+ - scripts may mutate loaded ac for analysis, but those mutations must be reproducible and traceable.  
+
+3. **Load aircraft model (`read_aircraft_model`) and size the aircraft (`size_aircraft!`), fly off design missions (`fly_mission!`)**
+4. **Get baseline unoptimized output and compare to weights, payload range diagram, EDB**
+5. **Calibrate only approved undocumented/model-assumption inputs if needed**: Revise only inputs whose provenance category permits calibration, record every change in the data ledger, identify which calibration target motivated the change, and re-run all validation metrics. MTOW is a validation target, not a calibration target.
+6. **Validate the baseline/calibrated aircraft**: Compare against held-out weights including MTOW, off-design payload-range points, EDB LTO thrust/fuel-flow points, and takeoff field length if available.
+7. **Optional design optimization study**: Optimize the aircraft to minimize weighted multi-mission fuel burn with constraints, but report this separately from V&amp;V. The optimized aircraft is compared to the validated baseline, not treated as the real-aircraft validation case.
+
+This project needs to be done carefully and slowly. After each small step we will stop and analyse. After each small step we will add thorough property based tests and write reflections and document it properly.
+
+## Project stages
+
+### Stage 0: TASOPT analysis and input classification
+
+Each input in the TOML file needs to classified as:
+
+1. Observed/certified inputs — APD geometry, MZFW, payload, fuel capacity, EDB fuel flow.
+2. Derived inputs — passenger payload from APD payload point / pax count, fuel density from APD mass/volume.
+3. Model assumptions — reserves, cruise CL etc.
+4. Calibration knobs — inputs explicitly tuned to match outputs (TO BE DETERMINED).
+5. Validation targets — held-out quantities used to assess the model, including MTOW, off-design payload-range points, EDB LTO thrust/fuel-flow points, and takeoff field length if available.
+
+### Stage 1A: Baseline B737-800 reconstruction with CFM56-7B
+
+Reconstruct a B737-800-like TASOPT model from APD/EDB data, derived quantities, and documented assumptions. The source of truth should be the TOML file plus any explicitly documented post-load mutations.
+
+### Stage 1B: Supervised calibration using only approved knobs
+
+If the baseline model misses required constraints or calibration targets, adjust only inputs classified as calibration knobs. Every adjustment must be recorded with source/provenance, motivation, and affected metrics. MTOW remains a validation target, not a calibration target.
+
+### Stage 1C: Baseline/calibrated V&amp;V for B737-800 with CFM56-7B
+
+Validate the aircraft against held-out metrics: MTOW, off-design APD payload-range points, EDB LTO thrust/fuel-flow points, and takeoff field length if available. Report digitization uncertainty and model error separately.
+
+### Stage 1D: Optional constrained design optimization study
+
+After V&amp;V, optimize only allowed undocumented/model-assumption variables or clearly declared design variables under constraints such as span, fuel volume, and mission feasibility. Report this as a design study relative to the validated baseline, not as the primary real-aircraft validation.
+
+### Stage 2: Build automated framework to design, size and V&amp;V other aircraft
+
+### Stage 3: Automated V&amp;V for a B777-300ER with GE90
+
+### NOTES
+
+Use `julia --project=&quot;/Users/aditeyashukla/Dropbox/Mac (2)/Documents/LAE/TASOPT.jl/&quot;` to run TASOPT in julia. Save all relevant scripts, data in `&quot;/Users/aditeyashukla/Dropbox/Mac (2)/Documents/Developer/LAE_AI/TAS_VV&quot;`. Don&#x27;t add/edit anything in `&quot;/Users/aditeyashukla/Dropbox/Mac (2)/Documents/LAE/TASOPT.jl/&quot;` without user permission.
+</code></pre>
+      </article>
+    </div>
+
+    <div class="modal file-modal" id="outline-agent-file" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="outline-agent-file-title">
+      <div class="modal-backdrop" data-modal-close></div>
+      <article class="modal-panel file-modal-panel" tabindex="-1">
+        <button class="modal-close" type="button" data-modal-close aria-label="Close file">×</button>
+        <p class="section-label">Attached file</p>
+        <h2 id="outline-agent-file-title">OUTLINE-WITH-AGENT.md</h2>
+        <pre class="attached-file"><code># TASOPT V&amp;V against real aircraft — agent-driven project outline
+
+## 1. Project purpose
+
+This project will build an AI-agent-driven, auditable pipeline to design, size, and verify/validate TASOPT aircraft models against real aircraft using public data.
+
+The first supervised case is a Boeing 737-800-like model with CFM56-7B-family engines. The broader objective is to generalize this into an automated framework that can ingest public aircraft/engine data, construct TASOPT input files, run TASOPT sizing and off-design missions, compare outputs to validation targets, and document every assumption and calibration decision.
+
+A suitable final validation claim is:
+
+&gt; We validate that a TASOPT B737-800-like model, parameterized only from APD/EDB data plus documented assumptions, can reproduce APD payload-range behavior and EDB LTO thrust/fuel-flow within X%.
+
+The value of `X` will be determined only after data extraction uncertainty, digitization repeatability, and baseline model behavior are quantified.
+
+## 2. Scientific questions
+
+1. **Input reconstruction:** Can public data and documented assumptions define a TASOPT aircraft model without hidden fitting?
+2. **Aircraft-level validation:** Does the sized aircraft recover held-out aircraft-level quantities, especially MTOW and off-design payload-range points?
+3. **Engine operating-point validation:** Does the TASOPT engine model reproduce EDB LTO thrust and fuel-flow at the four standard operating points?
+4. **Automation:** Can an AI agent perform the end-to-end process reproducibly while maintaining provenance, tests, and documentation?
+5. **Generalization:** Can the supervised B737-800 process become a reusable pipeline for other aircraft such as the B777-300ER/GE90?
+
+## 3. Scope and boundaries
+
+### In scope
+
+- Public data extraction from airport planning documents, emissions databank records, and similar sources.
+- TASOPT TOML input generation and modification.
+- TASOPT model loading via `read_aircraft_model`.
+- Aircraft sizing via `size_aircraft!`.
+- Off-design mission evaluation via `fly_mission!`.
+- Payload-range reconstruction and comparison.
+- EDB LTO thrust/fuel-flow comparison.
+- Data ledger, provenance tracking, tests, outputs, and reflections.
+- Agent-driven orchestration of the pipeline with human review gates.
+
+### Out of scope for initial V&amp;V claim
+
+- Claiming that TASOPT fully validates the real Boeing 737-800 in all respects.
+- Treating optimized designs as real-aircraft validation cases.
+- Validating NOx/HC/CO emission indices unless an emissions model is added.
+- Editing TASOPT source without explicit user permission.
+
+## 4. Data sources and target quantities
+
+### Airport planning document data
+
+Used for:
+
+- Geometry: fuselage length, fuselage diameter, span, height, gear geometry if available.
+- Weights: MZFW, fuel capacity, payload quantities, MTOW as validation target.
+- Payload-range chart: sizing point and off-design validation points.
+- Takeoff field length if available and variant-consistent.
+
+### Emissions databank data
+
+Used for:
+
+- Engine variant identification.
+- Rated thrust.
+- LTO fuel-flow at idle, approach, climb, and takeoff.
+- NOx/HC/CO EI values as reference metadata only for now.
+
+### TASOPT documentation/code
+
+Used for:
+
+- Mapping data to TOML fields.
+- Understanding model assumptions and array outputs.
+- Defining valid runtime calls and output extraction.
+
+## 5. Data provenance categories
+
+Every relevant TOML field and every runtime mutation must be classified before use.
+
+1. **Observed/certified input**
+   - Directly from APD/EDB/certification-like sources.
+   - Examples: geometry, MZFW, fuel capacity, engine rated thrust, EDB LTO fuel-flow.
+
+2. **Derived input**
+   - Computed from observed data using transparent equations.
+   - Examples: fuel density from fuel mass/volume, passenger weight from APD payload point divided by passenger count.
+
+3. **Model assumption**
+   - Required by TASOPT or mission modeling but not directly specified by public data.
+   - Examples: reserves, cruise CL, detailed mission rules, some aerodynamic assumptions.
+
+4. **Calibration knob**
+   - An input explicitly allowed to vary during supervised calibration.
+   - Must be approved before tuning and logged after every change.
+
+5. **Validation target**
+   - Held-out quantity used to assess model performance.
+   - Includes MTOW, off-design payload-range points, EDB LTO thrust/fuel-flow, and takeoff field length if available.
+
+Important rule: **MTOW is a validation target, not a calibration target.**
+
+## 6. B737-800 design/sizing mission definition
+
+The B737-800 model will be sized at the **selected-payload maximum-range point** on the APD highest-gross-weight payload-range line.
+
+This point is:
+
+- not the zero-range maximum payload point,
+- not the max-payload range corner,
+- not the zero-payload ferry range,
+- but the maximum range for the selected sizing payload on the highest-gross-weight APD line.
+
+This point is useful because it represents the mission capability the model must satisfy for the selected payload while operating near the fuel/MTOW constraint.
+
+Payload-range points should be documented as:
+
+1. Maximum structural payload.
+2. Maximum-payload range corner.
+3. Selected-payload maximum-range sizing point.
+4. Zero-payload ferry range.
+5. Any additional digitized off-design validation points.
+
+## 7. Agent-driven architecture
+
+The agent pipeline should be divided into specialized tasks. A single coding agent may implement these sequentially, but the responsibilities should remain distinct.
+
+### 7.1 Data extraction agent
+
+Responsibilities:
+
+- Locate source documents.
+- Record document title, revision, date, variant, page/table/figure numbers.
+- Extract raw values and units.
+- Digitize payload-range charts.
+- Estimate digitization uncertainty and repeatability.
+- Save raw and processed data under `TAS_VV/data/`.
+
+Outputs:
+
+- Raw data files.
+- Processed CSV/JSON/TOML fragments.
+- Extraction notes.
+- Source ledger rows.
+
+### 7.2 Provenance/classification agent
+
+Responsibilities:
+
+- Classify every data item and TOML field.
+- Distinguish observed, derived, assumption, calibration, and validation target fields.
+- Verify that all non-default TOML changes have ledger entries.
+- Flag ambiguous or unclassified fields for human review.
+
+Outputs:
+
+- `references/data_ledger.csv` or equivalent.
+- `references/input_classification.md`.
+- Validation warnings for missing provenance.
+
+### 7.3 TOML/model-building agent
+
+Responsibilities:
+
+- Start from the appropriate TASOPT template.
+- Generate or update the aircraft TOML.
+- Keep the TOML as the primary source of truth.
+- Document any required post-load mutations.
+- Avoid TASOPT source edits unless explicitly approved.
+
+Outputs:
+
+- Aircraft TOML files under `TAS_VV/models/`.
+- TOML diff reports.
+- Mapping from source data to TASOPT fields.
+
+### 7.4 TASOPT execution agent
+
+Responsibilities:
+
+- Run Julia with `julia --project=&quot;/Users/aditeyashukla/Dropbox/Mac (2)/Documents/LAE/TASOPT.jl/&quot;`.
+- Load the aircraft with `read_aircraft_model`.
+- Size with `size_aircraft!`.
+- Evaluate off-design missions with `fly_mission!`.
+- Export structured outputs.
+- Detect convergence failures and infeasible missions.
+
+Outputs:
+
+- Sizing logs.
+- Mission output CSVs.
+- Payload-range curve outputs.
+- LTO fuel-flow comparison outputs.
+
+### 7.5 Validation/audit agent
+
+Responsibilities:
+
+- Compare TASOPT outputs to held-out validation targets.
+- Separate digitization uncertainty from model error.
+- Check MTOW, payload-range points, EDB LTO thrust/fuel-flow, and field length if available.
+- Produce validation reports with clear pass/fail/needs-review labels.
+
+Outputs:
+
+- Validation tables.
+- Error plots.
+- Report markdown/PDF/HTML.
+- Machine-readable validation summary.
+
+### 7.6 Testing agent
+
+Responsibilities:
+
+- Add property-based and regression tests after each small step.
+- Test unit conversions, weight bookkeeping, payload-range monotonicity, file-write boundaries, and provenance completeness.
+- Ensure scripts are reproducible.
+
+Outputs:
+
+- Tests under `TAS_VV/tests/`.
+- Test logs.
+- CI-like local run scripts.
+
+### 7.7 Reflection/documentation agent
+
+Responsibilities:
+
+- Write short reflections after each completed step.
+- Summarize what changed, what was learned, what failed, and what is uncertain.
+- Keep the project website and outline synchronized with actual progress.
+
+Outputs:
+
+- `TAS_VV/reflections/` notes.
+- Website updates.
+- Stage completion notes.
+
+## 8. Pipeline stages
+
+### Stage 0: TASOPT analysis and input classification
+
+Goals:
+
+- Understand TASOPT inputs, outputs, and mission execution.
+- Create the data ledger format.
+- Classify all baseline TOML fields.
+- Define allowed calibration knobs.
+
+Exit criteria:
+
+- Data ledger template exists.
+- TOML classification framework exists.
+- Initial B737 source list exists.
+- Validation target list is frozen for Stage 1.
+
+### Stage 1A: Baseline B737-800 reconstruction with CFM56-7B
+
+Goals:
+
+- Extract B737-800 APD geometry, weights, fuel capacity, and payload-range points.
+- Extract CFM56-7B-family EDB thrust/fuel-flow data.
+- Build a baseline TASOPT TOML.
+- Run initial sizing and mission evaluation.
+
+Exit criteria:
+
+- Baseline TOML runs without hidden mutations.
+- Initial TASOPT outputs are exported.
+- Differences from APD/EDB targets are quantified.
+
+### Stage 1B: Supervised calibration using only approved knobs
+
+Goals:
+
+- If needed, adjust only pre-approved calibration knobs.
+- Record every change with motivation and affected metrics.
+- Do not tune MTOW directly.
+
+Exit criteria:
+
+- Calibration log is complete.
+- The model satisfies basic feasibility constraints.
+- Validation targets remain held out.
+
+### Stage 1C: Baseline/calibrated B737 V&amp;V
+
+Goals:
+
+- Validate MTOW.
+- Validate off-design payload-range points.
+- Validate EDB LTO thrust/fuel-flow.
+- Validate takeoff field length if reliable public data exists.
+- Report model error and data/digitization uncertainty separately.
+
+Exit criteria:
+
+- Validation report generated.
+- Pass/fail/tolerance discussion completed.
+- Limitations documented.
+
+### Stage 1D: Optional constrained design optimization study
+
+Goals:
+
+- Optimize weighted multi-mission fuel burn only after V&amp;V.
+- Constrain known APD quantities such as span and fuel volume.
+- Vary only undocumented/model-assumption variables or clearly declared design variables.
+
+Important: This is not the primary validation case. The optimized aircraft is compared to the validated baseline, not treated as the real B737-800.
+
+### Stage 2: Automated framework for other aircraft
+
+Goals:
+
+- Convert the supervised B737 process into reusable scripts and schemas.
+- Define agent prompts/checklists.
+- Support multiple aircraft classes and variants.
+
+Exit criteria:
+
+- New aircraft can be initialized from a data ledger.
+- TOML generation and validation reports are mostly automated.
+
+### Stage 3: B777-300ER with GE90
+
+Goals:
+
+- Apply the automated framework to a wide-body aircraft.
+- Carefully handle aircraft and engine variants.
+- Compare performance against APD payload-range and GE90 EDB fuel-flow data.
+
+Exit criteria:
+
+- B777-300ER validation report.
+- Lessons learned comparing narrow-body and wide-body cases.
+
+## 9. Tests and invariants
+
+### Unit and conversion tests
+
+- lbf ↔ N.
+- kg mass ↔ N force using consistent gravity.
+- nmi ↔ m.
+- fuel volume/mass/density conversions.
+
+### Weight bookkeeping tests
+
+- `Wempty = WMTO - Wfuel - Wpay` where applicable.
+- Off-design `WTO = Wempty + Wpay_mission + Wfuel_mission`.
+- Feasible missions satisfy `Wfuel &lt;= Wfmax`.
+
+### Payload-range tests
+
+- At fixed range, feasible payload should not increase when constraints become stricter.
+- At fixed payload, feasible range should not increase when payload increases.
+- Bisection methods should be deterministic within tolerance.
+
+### Provenance tests
+
+- Every non-default TOML field must have a ledger entry.
+- Every calibration knob must have approval and a change log.
+- Every validation target must be frozen before calibration.
+
+### File boundary tests
+
+- Scripts write only under `TAS_VV/` unless explicitly approved.
+- TASOPT source files are not modified without user permission.
+
+## 10. Deliverables
+
+- Data ledger for each aircraft.
+- Input classification report.
+- Aircraft TOML files.
+- Extraction scripts and notes.
+- TASOPT run scripts.
+- Validation comparison scripts.
+- Property/regression tests.
+- B737 V&amp;V report.
+- Website project page and reflections.
+- Automated framework for follow-on aircraft.
+
+## 11. Working directories and execution
+
+Project workspace:
+
+```text
+/Users/aditeyashukla/Dropbox/Mac (2)/Documents/Developer/LAE_AI/TAS_VV
+```
+
+TASOPT repository:
+
+```text
+/Users/aditeyashukla/Dropbox/Mac (2)/Documents/LAE/TASOPT.jl/
+```
+
+Julia command:
+
+```bash
+julia --project=&quot;/Users/aditeyashukla/Dropbox/Mac (2)/Documents/LAE/TASOPT.jl/&quot;
+```
+
+Rule: do not add/edit files in the TASOPT repository without explicit user permission, except for reading code/documentation.
+</code></pre>
+      </article>
+    </div>
+
+    <div class="modal file-modal" id="transcript-file" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="transcript-file-title">
+      <div class="modal-backdrop" data-modal-close></div>
+      <article class="modal-panel file-modal-panel" tabindex="-1">
+        <button class="modal-close" type="button" data-modal-close aria-label="Close file">×</button>
+        <p class="section-label">Attached file</p>
+        <h2 id="transcript-file-title">TRANSCRIPT.md</h2>
+        <pre class="attached-file"><code># Transcript — TASOPT V&amp;V project planning and website update
+
+This transcript records the main project-planning conversation used to shape the TASOPT V&amp;V project page and outline.
+
+## 1. Initial project outline review
+
+**Human:** I have written an outline doc for a TASOPT V&amp;V project. Read it, inspect TASOPT code/documentation, and grill-me given the project, goals, and steps.
+
+**Agent:** Reviewed `TAS_VV/OUTLINE.md`, TASOPT documentation, sizing/mission/input code, and existing B737 V&amp;V scripts. Main critique: the project is viable, but it needs strict separation between observed inputs, derived inputs, assumptions, calibration knobs, and validation targets. Warned that “fine tuning” can become curve fitting unless governed by a data ledger and held-out validation targets.
+
+## 2. Scientific claim and design mission
+
+**Human:** Confirmed that the final report should say something like: “We validate that a TASOPT B737-800-like model, parameterized only from APD/EDB data plus documented assumptions, can reproduce APD payload-range and EDB LTO fuel-flow within X%.” Asked whether the selected design mission makes sense: the maximum range at selected payload, not maximum payload and not ferry range.
+
+**Agent:** Agreed, but recommended naming it carefully as the “selected-payload maximum-range sizing point” to avoid confusion with ferry range. Clarified that calibration and validation must remain separate, and that EDB comparison should currently use thrust and fuel-flow only, not emissions indices.
+
+## 3. MTOW as validation target
+
+**Human:** Clarified that MTOW should be a validation target and asked to update the staged plan.
+
+**Agent:** Updated `TAS_VV/OUTLINE.md` so MTOW is explicitly listed as a validation target, not a calibration target. Reworked stages into Stage 0, Stage 1A, Stage 1B, Stage 1C, Stage 1D, Stage 2, and Stage 3.
+
+## 4. Website project page
+
+**Human:** Asked to create/rebuild the project page on the Aditeya website from scratch using the outline.
+
+**Agent:** Rebuilt the TASOPT project page, first as a project/product-like page. Added local B737 payload-range and geometry images, and updated homepage project links.
+
+**Human:** The page looked too much like a product description. Asked to make it more like an academic project/paper with distinct structure answering scientific questions.
+
+**Agent:** Reworked the page into a paper-style layout: title, abstract, scientific questions, figure panel, methods, validation matrix, sizing mission, uncertainty/tests, and study stages.
+
+## 5. Agent-driven pipeline emphasis
+
+**Human:** Reminded that the real goal is an AI-agent-driven automated pipeline to design and V&amp;V aircraft models. Also liked the selected-payload maximum-range section and requested an interactive visualization.
+
+**Agent:** Updated the page to emphasize the agent-driven automated pipeline. Added an agent system section and an interactive payload-range visualization explaining maximum payload, maximum-payload range, selected-payload maximum-range sizing mission, and ferry range.
+
+## 6. Detailed agent outline
+
+**Human:** Asked for `OUTLINE-WITH-AGENT.md` and then to use Playwright to inspect/fix the website.
+
+**Agent:** Created `TAS_VV/OUTLINE-WITH-AGENT.md`, describing scientific questions, scope, data sources, provenance categories, agent roles, pipeline stages, tests, deliverables, and execution directories. Used Playwright screenshots to detect and fix layout/overflow issues.
+
+## 7. Updates page and payload-range visualization
+
+**Human:** Asked to combine updates and reflections into one Updates tab, add a new update from `TAS_VV/updates/001.md`, and make the payload-range visualization more interactive and useful.
+
+**Agent:** Combined navigation into About and Updates. Rebuilt `updates.html`, migrated earlier reflections into modals, added Update 001, uploaded/linked `OUTLINE.md` and `OUTLINE-WITH-AGENT.md`, redirected `reflections.html` to `updates.html`, and improved the payload-range visualization with a payload slider, dynamic point, live metrics, and constraint bars.
+
+## 8. Attached files in modals
+
+**Human:** Asked to make the attached files show up in modals, attach the transcript of this conversation too, and style attached files in monospace font.
+
+**Agent:** Added modal-based attachments for `OUTLINE.md`, `OUTLINE-WITH-AGENT.md`, and this transcript, using monospace preformatted styling.
+</code></pre>
+      </article>
+    </div>
   </main>
 
   <footer class="footer">

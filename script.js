@@ -139,6 +139,118 @@ document.querySelectorAll('.copy-email').forEach((button) => {
   });
 });
 
+const payloadRangePoints = {
+  'max-payload': {
+    title: 'A · Maximum structural payload',
+    copy: 'This point anchors the structural payload limit. It is useful for understanding payload capacity, but it is not a range-sizing condition.',
+    x: 58, y: 72, payload: 100, range: 0, fuel: 8, regime: 'structural payload limit',
+  },
+  'max-payload-range': {
+    title: 'B · Maximum-payload range',
+    copy: 'This is the farthest range at maximum payload. Past this point, the aircraft trades payload for fuel while staying within gross-weight and fuel-volume constraints.',
+    x: 210, y: 72, payload: 100, range: 42, fuel: 50, regime: 'payload limited',
+  },
+  sizing: {
+    title: 'C · Selected-payload maximum-range sizing mission',
+    copy: 'This project sizes the B737-800-like model here: the maximum range for the selected sizing payload on the highest-gross-weight APD line. It is fuel/MTOW-limited, but not the ferry point.',
+    x: 360, y: 158, payload: 58, range: 72, fuel: 88, regime: 'fuel / MTOW limited',
+  },
+  ferry: {
+    title: 'D · Zero-payload ferry range',
+    copy: 'The ferry point is the maximum range with no payload. It is useful as a held-out validation point, but it is not the passenger sizing mission.',
+    x: 490, y: 260, payload: 0, range: 100, fuel: 100, regime: 'fuel limited ferry',
+  },
+};
+
+function pointFromPayload(payload) {
+  const p = Math.max(0, Math.min(100, payload));
+  if (p >= payloadRangePoints.sizing.payload) {
+    const t = (100 - p) / (100 - payloadRangePoints.sizing.payload);
+    return {
+      x: payloadRangePoints['max-payload-range'].x + t * (payloadRangePoints.sizing.x - payloadRangePoints['max-payload-range'].x),
+      y: payloadRangePoints['max-payload-range'].y + t * (payloadRangePoints.sizing.y - payloadRangePoints['max-payload-range'].y),
+      range: payloadRangePoints['max-payload-range'].range + t * (payloadRangePoints.sizing.range - payloadRangePoints['max-payload-range'].range),
+      fuel: payloadRangePoints['max-payload-range'].fuel + t * (payloadRangePoints.sizing.fuel - payloadRangePoints['max-payload-range'].fuel),
+      regime: t < 0.18 ? 'payload limited' : 'fuel / MTOW trade',
+    };
+  }
+  const t = (payloadRangePoints.sizing.payload - p) / payloadRangePoints.sizing.payload;
+  return {
+    x: payloadRangePoints.sizing.x + t * (payloadRangePoints.ferry.x - payloadRangePoints.sizing.x),
+    y: payloadRangePoints.sizing.y + t * (payloadRangePoints.ferry.y - payloadRangePoints.sizing.y),
+    range: payloadRangePoints.sizing.range + t * (payloadRangePoints.ferry.range - payloadRangePoints.sizing.range),
+    fuel: payloadRangePoints.sizing.fuel + t * (payloadRangePoints.ferry.fuel - payloadRangePoints.sizing.fuel),
+    regime: 'fuel limited / payload traded away',
+  };
+}
+
+function updatePayloadRangeUI(point, activeKey) {
+  document.querySelectorAll('[data-pr-point]').forEach((el) => {
+    el.classList.toggle('active', el.dataset.prPoint === activeKey);
+  });
+
+  const title = document.querySelector('#pr-title');
+  const copy = document.querySelector('#pr-copy');
+  if (title) title.textContent = point.title;
+  if (copy) copy.textContent = point.copy;
+
+  const guideX = document.querySelector('.pr-guide-x');
+  const guideY = document.querySelector('.pr-guide-y');
+  if (guideX) {
+    guideX.setAttribute('x1', point.x);
+    guideX.setAttribute('x2', point.x);
+    guideX.setAttribute('y1', point.y);
+  }
+  if (guideY) {
+    guideY.setAttribute('x2', point.x);
+    guideY.setAttribute('y1', point.y);
+    guideY.setAttribute('y2', point.y);
+  }
+
+  document.querySelector('.pr-live-point')?.setAttribute('transform', `translate(${point.x} ${point.y})`);
+  const payloadBar = document.querySelector('.pr-payload-bar');
+  const fuelBar = document.querySelector('.pr-fuel-bar');
+  if (payloadBar) payloadBar.setAttribute('width', `${1.2 * point.payload}`);
+  if (fuelBar) fuelBar.setAttribute('width', `${1.2 * point.fuel}`);
+
+  const payload = document.querySelector('#pr-payload');
+  const range = document.querySelector('#pr-range');
+  const regime = document.querySelector('#pr-regime');
+  const sliderValue = document.querySelector('#payload-slider-value');
+  if (payload) payload.textContent = `${Math.round(point.payload)}% of max`;
+  if (range) range.textContent = `${Math.round(point.range)}% of diagram max`;
+  if (regime) regime.textContent = point.regime;
+  if (sliderValue) sliderValue.textContent = `${Math.round(point.payload)}%`;
+}
+
+function setPayloadRangePoint(key) {
+  const point = payloadRangePoints[key];
+  if (!point) return;
+  const slider = document.querySelector('#payload-slider');
+  if (slider) slider.value = point.payload;
+  updatePayloadRangeUI(point, key);
+}
+
+function setPayloadSlider(payload) {
+  const curvePoint = pointFromPayload(payload);
+  const point = {
+    title: `Payload slider · ${Math.round(payload)}% of maximum payload`,
+    copy: 'The slider moves along the feasible payload-range boundary. Moving left-to-right shows the trade from high-payload missions toward low-payload, fuel-limited range.',
+    payload: Number(payload),
+    ...curvePoint,
+  };
+  updatePayloadRangeUI(point, '');
+}
+
+if (document.querySelector('.interactive-pr')) {
+  document.querySelectorAll('[data-pr-point]').forEach((el) => {
+    el.addEventListener('click', () => setPayloadRangePoint(el.dataset.prPoint));
+  });
+  const slider = document.querySelector('#payload-slider');
+  slider?.addEventListener('input', () => setPayloadSlider(Number(slider.value)));
+  setPayloadRangePoint('sizing');
+}
+
 document.querySelectorAll('[data-modal-open]').forEach((button) => {
   button.addEventListener('click', () => {
     const modal = document.getElementById(button.dataset.modalOpen);

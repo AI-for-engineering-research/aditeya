@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="TASOPT Verification and Validation — project by Aditeya Shukla." />
-  <title>TASOPT Verification and Validation · About</title>
+  <meta name="description" content="TASOPT verification and validation against real aircraft data — an academic project by Aditeya Shukla." />
+  <title>TASOPT V&amp;V Against Real Aircraft · Aditeya Shukla</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>html{background:#06080d}body{background:#06080d}</style>
   <link rel="stylesheet" href="../../styles.css" />
 </head>
-<body class="project-page tasopt-project">
+<body class="project-page tasopt-paper-page">
   <header class="site-header">
     <a class="brand" href="../../index.html" aria-label="Aditeya Shukla home">AS</a>
     <nav class="nav" aria-label="Primary navigation">
@@ -22,73 +22,219 @@
     <div class="scroll-progress" aria-hidden="true"><span class="scroll-plane">✈</span></div>
   </header>
 
-  <main class="section-pad project-detail-main">
+  <main class="paper-main section-pad">
     <a class="breadcrumb" href="../../index.html#projects">← Back to projects</a>
 
-    <section class="project-detail-hero reveal">
-      <div class="project-hero-copy">
-        <p class="eyebrow">TASOPT · aircraft design · V&amp;V</p>
-        <h1>TASOPT Verification and Validation</h1>
-        <p class="lede">Validating TASOPT against real aircraft geometry and performance, starting with the Boeing 737-800 and extending to regional and wide-body aircraft.</p>
-        <div class="page-tabs">
-          <a class="active" href="about.html">About</a>
-          <a href="updates.html">Updates</a>
-          <a href="reflections.html">Reflections</a>
+    <section class="paper-title reveal">
+      <p class="eyebrow">Academic project · aircraft design model verification and validation</p>
+      <h1>Verification and validation of TASOPT against public aircraft data</h1>
+      <p class="paper-authors">Aditeya Shukla · MIT Laboratory for Aviation and the Environment</p>
+      <div class="page-tabs">
+        <a class="active" href="about.html">About</a>
+        <a href="updates.html">Updates</a>
+      </div>
+    </section>
+
+    <section class="paper-abstract-grid reveal delay-1">
+      <article class="paper-abstract">
+        <p class="section-label">Abstract</p>
+        <p>This project develops an AI-agent-driven, auditable pipeline for designing, sizing, and validating TASOPT aircraft models against real aircraft. The first case is a Boeing 737-800-like model with CFM56-7B engines. Public airport planning documents and emissions databank records are used to define geometry, mission requirements, fuel capacity, payload-range targets, and LTO thrust/fuel-flow validation points.</p>
+        <p>The central claim is deliberately narrow: an automated agent workflow should be able to assemble traceable inputs, generate a TASOPT model, run sizing and off-design missions, and check whether the model reproduces aircraft-level mission capability and selected engine operating points within a quantified tolerance. A perfect representation is not the objective; traceability and physically meaningful agreement are.</p>
+      </article>
+
+      <aside class="paper-claim-card">
+        <p class="section-label">Validation claim to be tested</p>
+        <blockquote>Can a TASOPT B737-800-like model, parameterized only from APD/EDB data plus documented assumptions, reproduce APD payload-range behavior and EDB LTO fuel-flow within X%?</blockquote>
+        <dl>
+          <div><dt>Aircraft</dt><dd>B737-800-like baseline</dd></div>
+          <div><dt>Engine</dt><dd>CFM56-7B family</dd></div>
+          <div><dt>Tolerance</dt><dd>X%, determined after uncertainty analysis</dd></div>
+        </dl>
+      </aside>
+    </section>
+
+    <section class="paper-question-map reveal">
+      <p class="section-label">Scientific questions</p>
+      <div class="question-map">
+        <article>
+          <span>Q1</span>
+          <h2>Can public data define a TASOPT aircraft without hidden fitting?</h2>
+          <p>Every input is assigned a provenance category before analysis: observed/certified, derived, assumption, calibration knob, or validation target.</p>
+        </article>
+        <article>
+          <span>Q2</span>
+          <h2>Does the sized aircraft recover held-out aircraft-level quantities?</h2>
+          <p>MTOW is held out as a validation target. Off-design payload-range points are also used to assess mission capability beyond the sizing point.</p>
+        </article>
+        <article>
+          <span>Q3</span>
+          <h2>Does the engine model reproduce independent LTO operating points?</h2>
+          <p>EDB thrust and fuel-flow at the four standard LTO points are validation metrics. Emission indices are reference data for now, not predicted targets.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="paper-figure-panel reveal">
+      <div class="paper-figure-copy">
+        <p class="section-label">Figure 1 · two independent views of the aircraft</p>
+        <h2>Geometry constrains the model; payload-range tests the mission.</h2>
+        <p>The project links two kinds of public evidence. Airport planning document dimensions constrain the airframe representation. Payload-range diagrams then test whether the sized model captures aircraft-level capability under realistic mission constraints.</p>
+      </div>
+      <div class="paper-figures">
+        <figure>
+          <img src="../../assets/tasopt-vv/b738_stickfig_vs_apd_dimensions.png" alt="TASOPT B737-800 stick figure compared with airport planning document dimensions" />
+          <figcaption><strong>1A.</strong> APD geometry mapped to TASOPT inputs.</figcaption>
+        </figure>
+        <figure>
+          <img src="../../assets/tasopt-vv/b738_payload_range_overlay.png" alt="TASOPT payload range curve overlaid on B737-800 airport planning document chart" />
+          <figcaption><strong>1B.</strong> Payload-range behavior compared against APD chart data.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="paper-method reveal">
+      <div class="section-heading">
+        <p class="section-label">Methods</p>
+        <h2>Analysis pipeline</h2>
+      </div>
+      <div class="method-river" aria-label="Validation workflow">
+        <article><span>1</span><strong>Agent extracts public data</strong><small>APD geometry, weights, fuel, payload-range; EDB thrust/fuel-flow.</small></article>
+        <i></i>
+        <article><span>2</span><strong>Agent classifies provenance</strong><small>Observed, derived, assumption, calibration knob, validation target.</small></article>
+        <i></i>
+        <article><span>3</span><strong>Agent builds TOML model</strong><small>TOML is the source of truth; no hidden runtime mutations.</small></article>
+        <i></i>
+        <article><span>4</span><strong>Agent runs TASOPT</strong><small><code>read_aircraft_model</code>, <code>size_aircraft!</code>, <code>fly_mission!</code>.</small></article>
+        <i></i>
+        <article><span>5</span><strong>Agent audits validation</strong><small>MTOW, off-design payload-range, LTO fuel-flow, field length if available.</small></article>
+      </div>
+    </section>
+
+    <section class="agent-system-panel reveal">
+      <div class="section-heading">
+        <p class="section-label">Agent system</p>
+        <h2>The research object is the pipeline, not just one aircraft.</h2>
+      </div>
+      <div class="agent-grid" aria-label="AI agent responsibilities">
+        <article><span>Data agent</span><p>Extracts APD/EDB values, units, variants, source pages, and digitized payload-range points.</p></article>
+        <article><span>Provenance agent</span><p>Classifies each input as observed, derived, assumption, calibration knob, or validation target.</p></article>
+        <article><span>Model agent</span><p>Builds the TASOPT TOML and records any documented post-load mutations.</p></article>
+        <article><span>Execution agent</span><p>Runs sizing and off-design missions, captures convergence behavior, and exports structured outputs.</p></article>
+        <article><span>Audit agent</span><p>Compares against held-out targets and separates model error from digitization uncertainty.</p></article>
+      </div>
+    </section>
+
+    <section class="paper-matrix reveal">
+      <div class="section-heading">
+        <p class="section-label">Validation design</p>
+        <h2>What is input, what is calibrated, and what is held out?</h2>
+      </div>
+      <div class="validation-matrix" role="table" aria-label="Input and validation classification matrix">
+        <div class="matrix-head" role="row">
+          <span role="columnheader">Quantity</span>
+          <span role="columnheader">Source</span>
+          <span role="columnheader">Role in study</span>
+          <span role="columnheader">Scientific purpose</span>
         </div>
-      </div>
-      <div class="hero-figure-stack" aria-label="Project validation targets">
-        <article class="hero-figure-card">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUQEXzzN6Qdk4l8xrDqAMoaV2NXqscVv0EExSCmcxrrXXlPZqLq18uF2g&s=10" alt="Boeing 737-800 geometry from airport planning documentation" />
-          <div><strong>B738 geometry baseline</strong><span>Match TASOPT inputs against real Boeing 737-800 dimensions from airport planning documentation.</span></div>
-        </article>
-        <article class="hero-figure-card offset">
-          <img src="https://i.sstatic.net/cecmx.png" alt="Payload-range diagram for aircraft performance validation" />
-          <div><strong>Payload-range validation</strong><span>Use the payload-range diagram to check whether the TASOPT model reproduces real aircraft performance.</span></div>
-        </article>
+        <div role="row"><span>Geometry</span><span>Airport planning document</span><span class="pill observed">Observed input</span><span>Constrain the physical aircraft representation.</span></div>
+        <div role="row"><span>Design payload/range</span><span>APD payload-range diagram</span><span class="pill observed">Observed sizing requirement</span><span>Define the selected-payload maximum-range sizing mission.</span></div>
+        <div role="row"><span>Fuel capacity</span><span>APD fuel mass/volume</span><span class="pill observed">Observed constraint</span><span>Limit mission feasibility through available fuel.</span></div>
+        <div role="row"><span>Fuel density</span><span>APD-derived calculation</span><span class="pill derived">Derived input</span><span>Convert volume and mass consistently.</span></div>
+        <div role="row"><span>Reserves / cruise assumptions</span><span>TASOPT/model assumptions</span><span class="pill assumed">Assumption or calibration knob</span><span>Represent mission rules not fully specified in public data.</span></div>
+        <div role="row"><span>MTOW</span><span>APD certified weight</span><span class="pill target">Validation target</span><span>Test whether the model recovers a held-out aircraft-level quantity.</span></div>
+        <div role="row"><span>Off-design payload-range points</span><span>APD chart digitization</span><span class="pill target">Validation target</span><span>Test mission capability away from the sizing point.</span></div>
+        <div role="row"><span>LTO thrust/fuel-flow</span><span>ICAO emissions databank</span><span class="pill target">Validation target</span><span>Test engine operating-point behavior independently.</span></div>
       </div>
     </section>
 
-    <section class="content-card project-summary reveal delay-1">
-      <p>This project uses TASOPT, a medium-fidelity aircraft design and optimization tool, and tests whether it can reproduce real aircraft behavior. The first target is the Boeing 737-800: matching not just published geometry, but also payload-range behavior through a multi-mission approach.</p>
-    </section>
-
-    <section class="project-flow reveal" aria-label="Project workflow diagram">
-      <div>Real B738 data</div>
-      <span>→</span>
-      <div>TASOPT model</div>
-      <span>→</span>
-      <div>Geometry V&amp;V</div>
-      <span>→</span>
-      <div>Multi-mission performance</div>
-      <span>→</span>
-      <div>Reusable V&amp;V pipeline</div>
-    </section>
-
-    <section class="project-two-col">
-      <article class="content-card reveal">
-        <p class="section-label">What I’m building</p>
-        <ul class="polished-list">
-          <li>A Boeing 737-800 reference model in TASOPT.</li>
-          <li>Geometry validation against real aircraft dimensions and published data.</li>
-          <li>Performance validation against a real payload-range diagram.</li>
-          <li>A multi-mission validation approach rather than relying on a single design point.</li>
-          <li>A repeatable V&amp;V workflow for additional aircraft classes.</li>
-        </ul>
+    <section class="paper-design-point interactive-pr-section reveal">
+      <article>
+        <p class="section-label">Sizing mission</p>
+        <h2>Selected-payload maximum-range point</h2>
+        <p>The B737-800 model is sized at the APD highest-gross-weight payload-range line point corresponding to maximum range for the selected sizing payload. This point is distinct from both the max-payload range corner and the zero-payload ferry range. It is the payload/range condition where the aircraft is fuel/MTOW-limited for the chosen payload.</p>
+        <div class="pr-controls" aria-label="Payload range explanation controls">
+          <button type="button" class="active" data-pr-point="max-payload">Max payload</button>
+          <button type="button" data-pr-point="max-payload-range">Max-payload range</button>
+          <button type="button" data-pr-point="sizing">Sizing mission</button>
+          <button type="button" data-pr-point="ferry">Ferry range</button>
+        </div>
+        <label class="pr-slider-label" for="payload-slider">Explore payload loading <span id="payload-slider-value">100%</span></label>
+        <input id="payload-slider" class="pr-slider" type="range" min="0" max="100" value="55" step="1" />
+        <div class="pr-readout" aria-live="polite">
+          <strong id="pr-title">Max payload</strong>
+          <p id="pr-copy">The left side of the curve is the structural payload limit. Range is small, but the aircraft carries its maximum allowable payload.</p>
+          <dl class="pr-metrics">
+            <div><dt>Payload</dt><dd id="pr-payload">—</dd></div>
+            <div><dt>Range</dt><dd id="pr-range">—</dd></div>
+            <div><dt>Regime</dt><dd id="pr-regime">—</dd></div>
+          </dl>
+        </div>
       </article>
-
-      <article class="content-card reveal delay-1">
-        <p class="section-label">Why it matters</p>
-        <p>Before TASOPT can be used confidently for future aircraft concepts or environmental optimization, it needs to reproduce current aircraft with known geometry and performance. A rigorous V&amp;V process helps separate modeling assumptions from real aircraft behavior.</p>
-      </article>
+      <div class="corner-diagram interactive-pr" aria-label="Interactive payload range corner diagram">
+        <div class="axis y">Payload</div>
+        <div class="axis x">Range</div>
+        <svg viewBox="0 0 560 330" role="img" aria-label="Interactive schematic payload range diagram explaining selected design point">
+          <defs>
+            <linearGradient id="prLine" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0" stop-color="#7dd3fc" />
+              <stop offset="1" stop-color="#f59e0b" />
+            </linearGradient>
+          </defs>
+          <line class="pr-axis" x1="58" y1="278" x2="510" y2="278" />
+          <line class="pr-axis" x1="58" y1="278" x2="58" y2="34" />
+          <path class="pr-fill" d="M58 72 L210 72 L360 158 L490 260 L490 278 L58 278 Z" />
+          <polyline class="pr-curve" points="58,72 210,72 360,158 490,260" />
+          <line class="pr-guide pr-guide-x" x1="58" y1="72" x2="58" y2="278" />
+          <line class="pr-guide pr-guide-y" x1="58" y1="72" x2="58" y2="72" />
+          <g class="pr-live-point" transform="translate(58 72)"><circle r="7"/><text x="14" y="5">current</text></g>
+          <g class="pr-point active" data-pr-point="max-payload" transform="translate(58 72)"><circle r="9"/><text x="12" y="-16">A</text></g>
+          <g class="pr-point" data-pr-point="max-payload-range" transform="translate(210 72)"><circle r="9"/><text x="12" y="-16">B</text></g>
+          <g class="pr-point design" data-pr-point="sizing" transform="translate(360 158)"><circle r="12"/><text x="15" y="-18">C</text></g>
+          <g class="pr-point" data-pr-point="ferry" transform="translate(490 260)"><circle r="9"/><text x="-44" y="-14">D</text></g>
+          <text class="pr-axis-label" x="438" y="312">Range</text>
+          <text class="pr-axis-label" x="10" y="54" transform="rotate(-90 10 54)">Payload</text>
+          <text class="pr-zone" x="92" y="120">payload limited</text>
+          <text class="pr-zone" x="286" y="218">fuel / MTOW limited</text>
+          <g class="pr-bars" aria-hidden="true">
+            <text x="58" y="25">constraint use</text>
+            <rect x="170" y="15" width="120" height="8" rx="4" />
+            <rect class="pr-payload-bar" x="170" y="15" width="120" height="8" rx="4" />
+            <rect x="330" y="15" width="120" height="8" rx="4" />
+            <rect class="pr-fuel-bar" x="330" y="15" width="70" height="8" rx="4" />
+            <text x="170" y="43">payload</text>
+            <text x="330" y="43">fuel</text>
+          </g>
+        </svg>
+      </div>
     </section>
 
-    <section class="content-card reveal">
-      <p class="section-label">Next validation targets</p>
-      <ul class="polished-list compact-list">
-        <li><strong>Regional aircraft:</strong> Embraer E195.</li>
-        <li><strong>Wide-body aircraft:</strong> Boeing 777-300ER.</li>
-        <li>Turn the B738 process into a reusable pipeline for aircraft-level V&amp;V across size classes.</li>
-      </ul>
+    <section class="paper-uncertainty reveal">
+      <div class="section-heading">
+        <p class="section-label">Uncertainty and tests</p>
+        <h2>Credibility depends on bookkeeping</h2>
+      </div>
+      <div class="test-grid">
+        <article><h3>Digitization uncertainty</h3><p>The APD payload-range chart must be digitized with a target uncertainty below 0.5% if possible, and repeated extraction should be used to estimate scatter.</p></article>
+        <article><h3>Unit integrity</h3><p>TASOPT stores many weights as force. Tests will explicitly guard against kg/lbf/N bookkeeping errors.</p></article>
+        <article><h3>Mission monotonicity</h3><p>At fixed range, feasible payload should not increase with stricter constraints; at fixed payload, feasible range should not increase when payload increases.</p></article>
+        <article><h3>Write boundaries</h3><p>Scripts should write outputs under the project workspace and should not edit TASOPT source without permission.</p></article>
+      </div>
+    </section>
+
+    <section class="paper-stages reveal">
+      <div class="section-heading">
+        <p class="section-label">Study plan</p>
+        <h2>Stages of the research</h2>
+      </div>
+      <ol class="stage-timeline">
+        <li><span>Stage 0</span><strong>TASOPT analysis and input classification</strong><p>Build the data ledger and classify every TOML field.</p></li>
+        <li><span>Stage 1A</span><strong>B737-800 reconstruction</strong><p>Reconstruct a B737-800-like model with CFM56-7B engines from APD/EDB data and documented assumptions.</p></li>
+        <li><span>Stage 1B</span><strong>Supervised calibration</strong><p>Adjust only approved knobs and record every change with provenance and motivation.</p></li>
+        <li><span>Stage 1C</span><strong>B737 V&amp;V</strong><p>Validate against MTOW, held-out payload-range points, EDB LTO thrust/fuel-flow, and field-length data if available.</p></li>
+        <li><span>Stage 1D</span><strong>Optional design optimization</strong><p>Report fuel-burn optimization separately from validation, relative to the validated baseline.</p></li>
+        <li><span>Stage 2</span><strong>Automated framework</strong><p>Generalize the workflow to other aircraft.</p></li>
+        <li><span>Stage 3</span><strong>B777-300ER / GE90</strong><p>Apply the automated V&amp;V pipeline to a wide-body aircraft case.</p></li>
+      </ol>
     </section>
   </main>
 
