@@ -332,6 +332,31 @@ function renderMarkdown(text) {
   return html.join('\n');
 }
 
+function renderTranscript(text) {
+  const turns = [];
+  let current = null;
+  text.replace(/\r\n/g, '\n').split('\n').forEach((line) => {
+    const match = line.match(/^(USER|ASSISTANT):\s?(.*)$/);
+    if (match) {
+      if (current) turns.push(current);
+      current = { role: match[1].toLowerCase(), content: match[2] ? `${match[2]}\n` : '' };
+    } else if (current) {
+      current.content += `${line}\n`;
+    }
+  });
+  if (current) turns.push(current);
+
+  return `<div class="pretty-transcript">${turns.map((turn, index) => `
+    <article class="transcript-message ${turn.role}">
+      <div class="transcript-message-head">
+        <span>${turn.role === 'user' ? 'Aditeya' : 'Agent'}</span>
+        <small>Turn ${String(index + 1).padStart(2, '0')}</small>
+      </div>
+      <div class="transcript-message-body markdown-file">${renderMarkdown(turn.content.trim())}</div>
+    </article>
+  `).join('')}</div>`;
+}
+
 function renderAttachedMarkdown(root = document) {
   root.querySelectorAll('.attached-file').forEach((pre) => {
     const wrapper = document.createElement('div');
@@ -340,17 +365,20 @@ function renderAttachedMarkdown(root = document) {
     pre.replaceWith(wrapper);
   });
 
-  root.querySelectorAll('[data-markdown-src]').forEach(async (container) => {
+  root.querySelectorAll('[data-markdown-src], [data-transcript-src]').forEach(async (container) => {
     if (container.dataset.loaded) return;
     container.dataset.loaded = 'true';
-    container.classList.add('markdown-file');
+    const isTranscript = Boolean(container.dataset.transcriptSrc);
+    if (!isTranscript) container.classList.add('markdown-file');
     container.innerHTML = '<p class="muted">Loading attached file…</p>';
     try {
-      const response = await fetch(container.dataset.markdownSrc);
+      const src = container.dataset.transcriptSrc || container.dataset.markdownSrc;
+      const response = await fetch(src);
       if (!response.ok) throw new Error('Fetch failed');
       const text = await response.text();
-      const isMarkdown = /\.md($|\?)/.test(container.dataset.markdownSrc);
-      container.innerHTML = isMarkdown ? renderMarkdown(text) : `<pre class="markdown-code"><code>${escapeHtml(text)}</code></pre>`;
+      const isMarkdown = /\.md($|\?)/.test(src);
+      if (isTranscript) container.innerHTML = renderTranscript(text);
+      else container.innerHTML = isMarkdown ? renderMarkdown(text) : `<pre class="markdown-code"><code>${escapeHtml(text)}</code></pre>`;
     } catch {
       container.innerHTML = '<p class="muted">Could not load this attachment.</p>';
     }

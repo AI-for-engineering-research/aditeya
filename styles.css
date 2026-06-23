@@ -468,6 +468,17 @@ body.modal-is-open { overflow: hidden; }
 .markdown-file th:first-child, .markdown-file td:first-child { border-left: 0; }
 .markdown-file th { color: var(--ink); background: rgba(255,255,255,.08); font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; }
 .markdown-file tr:last-child td { border-bottom: 0; }
+.pretty-transcript { display: grid; gap: 1rem; margin-top: 1.25rem; max-height: 62vh; overflow: auto; padding-right: .35rem; }
+.transcript-message { border: 1px solid var(--line); border-radius: 1rem; overflow: hidden; background: rgba(255,255,255,.045); }
+.transcript-message.user { border-color: rgba(245,158,11,.28); }
+.transcript-message.assistant { border-color: rgba(125,211,252,.24); }
+.transcript-message-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .8rem 1rem; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.07); }
+.transcript-message-head span { color: var(--ink); font-weight: 950; }
+.transcript-message.user .transcript-message-head span { color: var(--accent-2); }
+.transcript-message.assistant .transcript-message-head span { color: var(--accent); }
+.transcript-message-head small { color: var(--muted); font-weight: 900; text-transform: uppercase; letter-spacing: .08em; }
+.transcript-message-body.markdown-file { margin: 0; max-height: none; overflow: visible; border: 0; border-radius: 0; background: transparent; }
+.transcript-message.user .transcript-message-body p { color: var(--ink); font-size: 1.05rem; }
 .update-callout, .update-figure-grid { margin: 1.4rem 0; }
 .update-callout { padding: 1.1rem; border: 1px solid rgba(125,211,252,.24); border-radius: 1rem; background: rgba(125,211,252,.075); }
 .update-callout h3 { font-size: clamp(1.25rem, 2vw, 1.7rem); margin-bottom: .65rem; }
