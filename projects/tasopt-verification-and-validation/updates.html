@@ -59,25 +59,30 @@
 
           <p>I first wrote <button class="inline-file-button" type="button" data-modal-open="digitize-file">DIGITIZE.md</button> and asked the agent to <code>grill-me</code>. It was able to come up with good questions (<button class="inline-file-button" type="button" data-modal-open="digitize-grill-file">grill-me response</button>) to fill in the gaps (for eg how to determine the sizing mission, which helped me write a test). I was able to also come up with a plan for the agent+harness setup.</p>
 
-          <p>Here is the example of the gross weight column selection test. The APD had multiple 737-800 / 737-800W gross weight columns, and the payload-range diagram had constraints that identify the right column. The test checks that exactly one column matches those constraints.</p>
+          <p>Here is the example of the gross weight column selection test.</p>
 
           <div class="update-figure-grid">
             <figure>
-              <img src="../../assets/tasopt-vv/b738_payload_range_overlay.png" alt="B737-800 payload range overlay" loading="lazy">
-              <figcaption><strong>Payload-range diagram.</strong> Used for the max zero fuel weight and max brake-release gross weight constraints.</figcaption>
+              <img src="../../assets/tasopt-vv/apd_p3-5_payload_range_constraints.png" alt="APD p. 3-5 payload range diagram constraints" loading="lazy">
+              <figcaption><strong>APD p. 3-5.</strong> The payload/range diagram says max zero fuel weight is 138,300 lb / 62,732 kg, and the relevant brake-release gross weight line is 174.2 thousand lb / 79.0 thousand kg.</figcaption>
             </figure>
             <figure>
-              <img src="../../assets/tasopt-vv/b738_stickfig_vs_apd_dimensions.png" alt="B737-800 TASOPT stick figure versus APD dimensions" loading="lazy">
-              <figcaption><strong>737-800 geometry check.</strong> Keeping the digitized data tied back to APD dimensions.</figcaption>
+              <img src="../../assets/tasopt-vv/apd_p2-4_gross_weight_table_option_c.png" alt="APD p. 2-4 gross weight table with option C highlighted" loading="lazy">
+              <figcaption><strong>APD p. 2-4.</strong> The general characteristics table has multiple 737-800/-800W gross weight columns. The red column is the one that matches both values from the payload/range diagram.</figcaption>
             </figure>
           </div>
 
-          <p>The test uses the payload-range diagram constraints:</p>
-          <ul>
-            <li>MZFW = 138,300 lb / 62,732 kg</li>
-            <li>max brake-release gross weight = 174,200 lb / 79,000 kg</li>
-          </ul>
-          <p>and verifies that exactly one APD p. 2-4 gross-weight column matches: option <strong>C</strong>.</p>
+          <p>The test is basically:</p>
+          <ol>
+            <li>Read the APD p. 3-5 payload/range constraints.</li>
+            <li>Use MZFW = 138,300 lb and max brake-release gross weight = 174,200 lb as the target values.</li>
+            <li>Read all 737-800/-800W gross weight options from APD p. 2-4.</li>
+            <li>Find rows where <code>max_zero_fuel_weight_lb == 138300</code> and <code>max_takeoff_weight_lb == 174200</code>.</li>
+            <li>Assert that there is exactly one match.</li>
+            <li>Assert that the matching option is <strong>C</strong>, then check the related values: max taxi weight 174,700 lb, max landing weight 146,300 lb, max structural payload 47,000 lb.</li>
+          </ol>
+
+          <p>So the point of the test is not just “pick option C”; it is to make the column choice reproducible from two different places in the APD.</p>
 
           <p>Right now the most important thing is to take my time with the input classification and then move to the digitization process. I don't want to miss any inputs that can be derived from the docs.</p>
 
