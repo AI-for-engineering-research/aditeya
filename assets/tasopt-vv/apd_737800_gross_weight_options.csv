@@ -1,0 +1,4 @@
+option_id,variant_group,max_taxi_weight_lb,max_takeoff_weight_lb,max_landing_weight_lb,max_zero_fuel_weight_lb,operating_empty_weight_lb,max_structural_payload_lb,usable_fuel_lb,source_document,source_page,pdf_page,table_or_figure,status,notes
+A,"737-800, 737-800W",156000,155500,144000,136000,91300,44700,46062,737NG_REV_C.pdf,2-4,25,"General Characteristics: Model 737-800, -800W, -800BCF",draft,"First 737-800/-800W gross-weight column"
+B,"737-800, 737-800W",173000,172500,144000,136000,91300,44700,46062,737NG_REV_C.pdf,2-4,25,"General Characteristics: Model 737-800, -800W, -800BCF",draft,"Second 737-800/-800W gross-weight column"
+C,"737-800, 737-800W",174700,174200,146300,138300,91300,47000,46062,737NG_REV_C.pdf,2-4,25,"General Characteristics: Model 737-800, -800W, -800BCF",draft,"Third 737-800/-800W gross-weight column; expected match to payload-range diagram MZFW/BRGW"

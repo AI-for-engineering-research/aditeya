@@ -36,11 +36,62 @@
     <section class="update-layout">
       <aside class="update-index reveal">
         <p class="section-label">Project log</p>
+        <a href="#update-002">002 · Setting up DIGITIZE</a>
         <a href="#update-001">001 · Outline and grill-me</a>
         <a href="#earlier-notes">Earlier notes</a>
       </aside>
 
       <div class="update-stream">
+        <article class="update-paper reveal delay-1" id="update-002">
+          <header>
+            <span>Update 002</span>
+            <h2>Setting up the DIGITIZE module</h2>
+            <p>23 June 2026</p>
+          </header>
+
+          <p>I’ve been working on setting up the “Digitization module”. The goal here is to</p>
+          <ol>
+            <li>determine what inputs we actually need for TASOPT</li>
+            <li>Going through the APD for a 737-800 and digitizing that data.</li>
+            <li>Creating a property based tests suite</li>
+            <li>Steps 2-3 are done semi automated / supervised. Now we must make an agent with a light harness to do these on its own. first test it with the same 738 data, then on a different aircraft in the same APD; then on a new APD for a different aircraft.</li>
+          </ol>
+
+          <p>I first wrote <button class="inline-file-button" type="button" data-modal-open="digitize-file">DIGITIZE.md</button> and asked the agent to <code>grill-me</code>. It was able to come up with good questions (<button class="inline-file-button" type="button" data-modal-open="digitize-grill-file">grill-me response</button>) to fill in the gaps (for eg how to determine the sizing mission, which helped me write a test). I was able to also come up with a plan for the agent+harness setup.</p>
+
+          <p>Here is the example of the gross weight column selection test. The APD had multiple 737-800 / 737-800W gross weight columns, and the payload-range diagram had constraints that identify the right column. The test checks that exactly one column matches those constraints.</p>
+
+          <div class="update-figure-grid">
+            <figure>
+              <img src="../../assets/tasopt-vv/b738_payload_range_overlay.png" alt="B737-800 payload range overlay" loading="lazy">
+              <figcaption><strong>Payload-range diagram.</strong> Used for the max zero fuel weight and max brake-release gross weight constraints.</figcaption>
+            </figure>
+            <figure>
+              <img src="../../assets/tasopt-vv/b738_stickfig_vs_apd_dimensions.png" alt="B737-800 TASOPT stick figure versus APD dimensions" loading="lazy">
+              <figcaption><strong>737-800 geometry check.</strong> Keeping the digitized data tied back to APD dimensions.</figcaption>
+            </figure>
+          </div>
+
+          <p>The test uses the payload-range diagram constraints:</p>
+          <ul>
+            <li>MZFW = 138,300 lb / 62,732 kg</li>
+            <li>max brake-release gross weight = 174,200 lb / 79,000 kg</li>
+          </ul>
+          <p>and verifies that exactly one APD p. 2-4 gross-weight column matches: option <strong>C</strong>.</p>
+
+          <p>Right now the most important thing is to take my time with the input classification and then move to the digitization process. I don't want to miss any inputs that can be derived from the docs.</p>
+
+          <div class="update-links">
+            <span class="attachment-label">Attached files</span>
+            <button class="button" type="button" data-modal-open="digitize-file">Read DIGITIZE.md</button>
+            <button class="button ghost" type="button" data-modal-open="digitize-grill-file">Read grill-me response</button>
+            <button class="button ghost" type="button" data-modal-open="gross-weight-file">Read gross-weight selection note</button>
+            <button class="button ghost" type="button" data-modal-open="gross-weight-test-file">Read test</button>
+            <button class="button ghost" type="button" data-modal-open="gross-weight-data-file">Read APD table data</button>
+            <button class="button ghost" type="button" data-modal-open="payload-constraints-file">Read payload constraints</button>
+          </div>
+        </article>
+
         <article class="update-paper reveal delay-1" id="update-001">
           <header>
             <span>Update 001</span>
@@ -134,6 +185,66 @@
             <li>I guess this is what Prashanth and Ian feel when they tell me to do something.</li>
           </ul>
         </section>
+      </article>
+    </div>
+
+    <div class="modal file-modal" id="digitize-file" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="digitize-file-title">
+      <div class="modal-backdrop" data-modal-close></div>
+      <article class="modal-panel file-modal-panel" tabindex="-1">
+        <button class="modal-close" type="button" data-modal-close aria-label="Close file">×</button>
+        <p class="section-label">Attached file</p>
+        <h2 id="digitize-file-title">DIGITIZE.md</h2>
+        <div data-markdown-src="../../assets/tasopt-vv/DIGITIZE.md"></div>
+      </article>
+    </div>
+
+    <div class="modal file-modal" id="digitize-grill-file" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="digitize-grill-file-title">
+      <div class="modal-backdrop" data-modal-close></div>
+      <article class="modal-panel file-modal-panel" tabindex="-1">
+        <button class="modal-close" type="button" data-modal-close aria-label="Close file">×</button>
+        <p class="section-label">Attached file</p>
+        <h2 id="digitize-grill-file-title">Digitization module — grill-me response</h2>
+        <div data-markdown-src="../../assets/tasopt-vv/DIGITIZATION-GRILL-ME.md"></div>
+      </article>
+    </div>
+
+    <div class="modal file-modal" id="gross-weight-file" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="gross-weight-file-title">
+      <div class="modal-backdrop" data-modal-close></div>
+      <article class="modal-panel file-modal-panel" tabindex="-1">
+        <button class="modal-close" type="button" data-modal-close aria-label="Close file">×</button>
+        <p class="section-label">Attached file</p>
+        <h2 id="gross-weight-file-title">Gross-weight column selection</h2>
+        <div data-markdown-src="../../assets/tasopt-vv/gross_weight_column_selection.md"></div>
+      </article>
+    </div>
+
+    <div class="modal file-modal" id="gross-weight-test-file" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="gross-weight-test-file-title">
+      <div class="modal-backdrop" data-modal-close></div>
+      <article class="modal-panel file-modal-panel" tabindex="-1">
+        <button class="modal-close" type="button" data-modal-close aria-label="Close file">×</button>
+        <p class="section-label">Attached file</p>
+        <h2 id="gross-weight-test-file-title">test_apd_gross_weight_column_selection.py</h2>
+        <div data-markdown-src="../../assets/tasopt-vv/test_apd_gross_weight_column_selection.py"></div>
+      </article>
+    </div>
+
+    <div class="modal file-modal" id="gross-weight-data-file" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="gross-weight-data-file-title">
+      <div class="modal-backdrop" data-modal-close></div>
+      <article class="modal-panel file-modal-panel" tabindex="-1">
+        <button class="modal-close" type="button" data-modal-close aria-label="Close file">×</button>
+        <p class="section-label">Attached data</p>
+        <h2 id="gross-weight-data-file-title">apd_737800_gross_weight_options.csv</h2>
+        <div data-markdown-src="../../assets/tasopt-vv/apd_737800_gross_weight_options.csv"></div>
+      </article>
+    </div>
+
+    <div class="modal file-modal" id="payload-constraints-file" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="payload-constraints-file-title">
+      <div class="modal-backdrop" data-modal-close></div>
+      <article class="modal-panel file-modal-panel" tabindex="-1">
+        <button class="modal-close" type="button" data-modal-close aria-label="Close file">×</button>
+        <p class="section-label">Attached data</p>
+        <h2 id="payload-constraints-file-title">payload_range_diagram_constraints.csv</h2>
+        <div data-markdown-src="../../assets/tasopt-vv/payload_range_diagram_constraints.csv"></div>
       </article>
     </div>
 

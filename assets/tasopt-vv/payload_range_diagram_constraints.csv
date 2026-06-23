@@ -1,0 +1,3 @@
+constraint_id,aircraft,parameter,value_lb,value_kg,source_document,source_page,pdf_page,figure,status,notes
+payload_range_mzfw,737-800,max_zero_fuel_weight,138300,62732,737NG_REV_C.pdf,3-5,65,"Payload/Range for Long Range Cruise: Model 737-800, -800W, -800BCF, BBJ2",draft,"User-stated value from payload-range diagram; use to identify gross-weight column"
+payload_range_brgw,737-800,max_brake_release_gross_weight,174200,79000,737NG_REV_C.pdf,3-5,65,"Payload/Range for Long Range Cruise: Model 737-800, -800W, -800BCF, BBJ2",draft,"User-stated value from payload-range diagram; corresponds to APD max takeoff/brake-release gross weight"

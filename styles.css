@@ -449,6 +449,34 @@ body.modal-is-open { overflow: hidden; }
 .file-modal-panel { width: min(1040px, 100%); max-height: min(86vh, 920px); }
 .attached-file { margin: 1.25rem 0 0; padding: 1rem; max-height: 62vh; overflow: auto; border: 1px solid var(--line); border-radius: 1rem; background: #05070b; color: #d6e4f0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: .86rem; line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere; }
 .attached-file code { font: inherit; }
+.markdown-file { margin-top: 1.25rem; max-height: 62vh; overflow: auto; padding: clamp(1rem, 3vw, 1.5rem); border: 1px solid var(--line); border-radius: 1rem; background: rgba(255,255,255,.045); color: var(--muted); }
+.markdown-file h1, .markdown-file h2, .markdown-file h3, .markdown-file h4 { color: var(--ink); letter-spacing: -.035em; line-height: 1.08; margin: 1.4rem 0 .75rem; }
+.markdown-file h1:first-child, .markdown-file h2:first-child, .markdown-file h3:first-child { margin-top: 0; }
+.markdown-file h1 { font-size: clamp(2rem, 4vw, 3.2rem); }
+.markdown-file h2 { font-size: clamp(1.55rem, 3vw, 2.25rem); }
+.markdown-file h3 { font-size: clamp(1.22rem, 2vw, 1.65rem); }
+.markdown-file p { margin: .8rem 0; color: var(--muted); }
+.markdown-file ul, .markdown-file ol { margin: .85rem 0 1rem; padding-left: 1.35rem; color: var(--muted); }
+.markdown-file li + li { margin-top: .35rem; }
+.markdown-file strong { color: var(--ink); }
+.markdown-file code { padding: .08rem .3rem; border: 1px solid rgba(125,211,252,.2); border-radius: .35rem; background: rgba(125,211,252,.12); color: var(--ink); font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: .9em; }
+.markdown-code { margin: 1rem 0; padding: 1rem; overflow: auto; border: 1px solid rgba(255,255,255,.13); border-radius: .85rem; background: #05070b; color: #d6e4f0; white-space: pre; }
+.markdown-code code { padding: 0; border: 0; background: none; color: inherit; }
+.markdown-table-wrap { overflow-x: auto; margin: 1rem 0; border: 1px solid var(--line); border-radius: .85rem; }
+.markdown-file table { width: 100%; border-collapse: collapse; min-width: 620px; }
+.markdown-file th, .markdown-file td { padding: .7rem .8rem; border-bottom: 1px solid var(--line); border-left: 1px solid var(--line); text-align: left; vertical-align: top; }
+.markdown-file th:first-child, .markdown-file td:first-child { border-left: 0; }
+.markdown-file th { color: var(--ink); background: rgba(255,255,255,.08); font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; }
+.markdown-file tr:last-child td { border-bottom: 0; }
+.update-callout, .update-figure-grid { margin: 1.4rem 0; }
+.update-callout { padding: 1.1rem; border: 1px solid rgba(125,211,252,.24); border-radius: 1rem; background: rgba(125,211,252,.075); }
+.update-callout h3 { font-size: clamp(1.25rem, 2vw, 1.7rem); margin-bottom: .65rem; }
+.update-callout p { color: var(--muted); margin: 0; }
+.update-figure-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1rem; }
+.update-figure-grid figure { margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 1rem; background: rgba(255,255,255,.045); }
+.update-figure-grid img { width: 100%; height: 280px; object-fit: contain; padding: .7rem; background: rgba(255,255,255,.035); border-bottom: 1px solid var(--line); }
+.update-figure-grid figcaption { padding: .85rem 1rem; color: var(--muted); }
+.update-figure-grid strong { color: var(--ink); }
 
 [data-tilt] { transition: transform 180ms ease, border-color 180ms ease; will-change: transform; }
 [data-tilt]:hover { border-color: rgba(125, 211, 252, .35); }
@@ -458,7 +486,7 @@ body.modal-is-open { overflow: hidden; }
 .delay-2 { transition-delay: 200ms; }
 
 @media (max-width: 950px) {
-  .hero, .process-grid, .project-detail-hero, .project-two-col, .vv-hero, .vv-image-grid, .vv-principles, .vv-two-col, .paper-abstract-grid, .question-map, .paper-figure-panel, .paper-design-point, .test-grid, .update-layout { grid-template-columns: 1fr; }
+  .hero, .process-grid, .project-detail-hero, .project-two-col, .vv-hero, .vv-image-grid, .vv-principles, .vv-two-col, .paper-abstract-grid, .question-map, .paper-figure-panel, .paper-design-point, .test-grid, .update-layout, .update-figure-grid { grid-template-columns: 1fr; }
   .hero { min-height: auto; }
   .portrait-card, .portrait-card img { min-height: 420px; }
   .hero-figure-card.offset { margin-left: 0; }

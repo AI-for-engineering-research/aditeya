@@ -251,6 +251,114 @@ if (document.querySelector('.interactive-pr')) {
   setPayloadRangePoint('sizing');
 }
 
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+}
+
+function renderInlineMarkdown(value) {
+  return escapeHtml(value)
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+}
+
+function renderMarkdown(text) {
+  const lines = text.replace(/\r\n/g, '\n').split('\n');
+  const html = [];
+  let index = 0;
+
+  const isTable = (line) => line.includes('|') && line.trim().startsWith('|');
+  const readTable = () => {
+    const rows = [];
+    while (index < lines.length && isTable(lines[index])) rows.push(lines[index++]);
+    if (rows.length < 2) return `<p>${renderInlineMarkdown(rows.join(' '))}</p>`;
+    const cells = (row) => row.trim().replace(/^\||\|$/g, '').split('|').map((cell) => cell.trim());
+    const head = cells(rows[0]);
+    const body = rows.slice(2).map(cells);
+    return `<div class="markdown-table-wrap"><table><thead><tr>${head.map((cell) => `<th>${renderInlineMarkdown(cell)}</th>`).join('')}</tr></thead><tbody>${body.map((row) => `<tr>${row.map((cell) => `<td>${renderInlineMarkdown(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+  };
+
+  while (index < lines.length) {
+    const line = lines[index];
+    const trimmed = line.trim();
+    if (!trimmed) { index += 1; continue; }
+
+    if (trimmed.startsWith('```')) {
+      const lang = trimmed.slice(3).trim();
+      index += 1;
+      const code = [];
+      while (index < lines.length && !lines[index].trim().startsWith('```')) code.push(lines[index++]);
+      index += 1;
+      html.push(`<pre class="markdown-code"><code>${escapeHtml(code.join('\n'))}</code></pre>`);
+      continue;
+    }
+
+    const heading = trimmed.match(/^(#{1,4})\s+(.+)$/);
+    if (heading) {
+      const level = heading[1].length;
+      html.push(`<h${level}>${renderInlineMarkdown(heading[2])}</h${level}>`);
+      index += 1;
+      continue;
+    }
+
+    if (isTable(trimmed) && index + 1 < lines.length && lines[index + 1].includes('---')) {
+      html.push(readTable());
+      continue;
+    }
+
+    if (/^[-*]\s+/.test(trimmed)) {
+      const items = [];
+      while (index < lines.length && /^[-*]\s+/.test(lines[index].trim())) items.push(lines[index++].trim().replace(/^[-*]\s+/, ''));
+      html.push(`<ul>${items.map((item) => `<li>${renderInlineMarkdown(item)}</li>`).join('')}</ul>`);
+      continue;
+    }
+
+    if (/^\d+\.\s+/.test(trimmed)) {
+      const items = [];
+      while (index < lines.length && /^\d+\.\s+/.test(lines[index].trim())) items.push(lines[index++].trim().replace(/^\d+\.\s+/, ''));
+      html.push(`<ol>${items.map((item) => `<li>${renderInlineMarkdown(item)}</li>`).join('')}</ol>`);
+      continue;
+    }
+
+    const paragraph = [trimmed];
+    index += 1;
+    while (index < lines.length && lines[index].trim() && !/^(#{1,4})\s+/.test(lines[index].trim()) && !/^[-*]\s+/.test(lines[index].trim()) && !/^\d+\.\s+/.test(lines[index].trim()) && !lines[index].trim().startsWith('```') && !isTable(lines[index].trim())) {
+      paragraph.push(lines[index].trim());
+      index += 1;
+    }
+    html.push(`<p>${renderInlineMarkdown(paragraph.join(' '))}</p>`);
+  }
+
+  return html.join('\n');
+}
+
+function renderAttachedMarkdown(root = document) {
+  root.querySelectorAll('.attached-file').forEach((pre) => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'markdown-file';
+    wrapper.innerHTML = renderMarkdown(pre.textContent);
+    pre.replaceWith(wrapper);
+  });
+
+  root.querySelectorAll('[data-markdown-src]').forEach(async (container) => {
+    if (container.dataset.loaded) return;
+    container.dataset.loaded = 'true';
+    container.classList.add('markdown-file');
+    container.innerHTML = '<p class="muted">Loading attached file…</p>';
+    try {
+      const response = await fetch(container.dataset.markdownSrc);
+      if (!response.ok) throw new Error('Fetch failed');
+      const text = await response.text();
+      const isMarkdown = /\.md($|\?)/.test(container.dataset.markdownSrc);
+      container.innerHTML = isMarkdown ? renderMarkdown(text) : `<pre class="markdown-code"><code>${escapeHtml(text)}</code></pre>`;
+    } catch {
+      container.innerHTML = '<p class="muted">Could not load this attachment.</p>';
+    }
+  });
+}
+
+renderAttachedMarkdown();
+
 document.querySelectorAll('[data-modal-open]').forEach((button) => {
   button.addEventListener('click', () => {
     const modal = document.getElementById(button.dataset.modalOpen);
